@@ -1,0 +1,17 @@
+# Use a small Nginx image
+FROM nginx:alpine
+
+# Remove default nginx page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your index.html into nginx's web folder
+COPY index.html /usr/share/nginx/html/index.html
+
+# If later you add more files (CSS/JS), you can copy the whole folder:
+# COPY . /usr/share/nginx/html/
+
+# Expose port 80 (web)
+EXPOSE 80
+
+# Start nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
